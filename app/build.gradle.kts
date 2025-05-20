@@ -49,6 +49,16 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // ML Kit Face Detection API
+    implementation("com.google.mlkit:face-detection:16.1.5")
+
+    // Image loading and manipulation
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Permission handling
+    implementation("com.google.accompanist:accompanist-permissions:0.34.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
