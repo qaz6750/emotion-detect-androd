@@ -170,18 +170,24 @@ fun ImageFaceDetection() {
                     contentScale = ContentScale.Fit,
                     modifier = Modifier.fillMaxSize()
                 )
-                
-                // Draw face detection rectangles
+                  // Draw face detection rectangles
                 Canvas(modifier = Modifier.fillMaxSize()) {
                     if (imageWidth > 0 && imageHeight > 0) {
                         val scaleX = size.width / imageWidth
                         val scaleY = size.height / imageHeight
+                        
+                        Log.d("ImageDetection", "Canvas size: ${size.width}x${size.height}, " +
+                              "Image size: ${imageWidth}x${imageHeight}, " +
+                              "Scale: ${scaleX}x${scaleY}")
                         
                         detectedFaces.forEach { face ->
                             val scaledLeft = face.left * scaleX
                             val scaledTop = face.top * scaleY
                             val scaledRight = face.right * scaleX
                             val scaledBottom = face.bottom * scaleY
+                            
+                            Log.d("ImageDetection", "Face: original=(${face.left}, ${face.top}, ${face.right}, ${face.bottom}), " +
+                                  "scaled=(${scaledLeft}, ${scaledTop}, ${scaledRight}, ${scaledBottom})")
                             
                             drawRect(
                                 color = Color(0xFF00FF00), // Green

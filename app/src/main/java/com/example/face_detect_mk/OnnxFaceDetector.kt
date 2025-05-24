@@ -95,12 +95,19 @@ class OnnxFaceDetector(private val context: Context) {
                 Log.e(TAG, "Failed to get model outputs")
                 return emptyList()
             }
-            
-            // Convert outputs to flat arrays
+              // Convert outputs to flat arrays
             val scores = scoresOutput[0].flatMap { it.toList() }.toFloatArray()
             val boxes = boxesOutput[0].flatMap { it.toList() }.toFloatArray()
             
             Log.d(TAG, "Model outputs - Scores: ${scores.size}, Boxes: ${boxes.size}")
+            
+            // Debug: print first few detections
+            for (i in 0 until minOf(5, scores.size/2)) {
+                val conf = scores[i * 2 + 1]
+                if (conf > 0.1f) { // Low threshold for debugging
+                    Log.d(TAG, "Detection $i: confidence=$conf, box=[${boxes[i*4]}, ${boxes[i*4+1]}, ${boxes[i*4+2]}, ${boxes[i*4+3]}]")
+                }
+            }
             
             // Post-process results
             val detections = OnnxFaceDetectionUtils.postProcessOutputs(

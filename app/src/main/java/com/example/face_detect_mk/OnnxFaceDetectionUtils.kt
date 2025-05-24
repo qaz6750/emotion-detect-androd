@@ -119,35 +119,33 @@ object OnnxFaceDetectionUtils {
     ): List<FaceData> {
         val detections = mutableListOf<FaceData>()
         val numDetections = 4420
-        
-        // Extract valid detections above threshold
+          // Extract valid detections above threshold
         for (i in 0 until numDetections) {
             val confidence = scores[i * 2 + 1]  // Use positive class score
             
             if (confidence > confidenceThreshold) {
-                // Get box coordinates (center format)
-                val centerX = boxes[i * 4]
-                val centerY = boxes[i * 4 + 1]
-                val width = boxes[i * 4 + 2]
-                val height = boxes[i * 4 + 3]
+                // Get box coordinates (normalized corner format: x1, y1, x2, y2)
+                val x1Norm = boxes[i * 4]
+                val y1Norm = boxes[i * 4 + 1]
+                val x2Norm = boxes[i * 4 + 2]
+                val y2Norm = boxes[i * 4 + 3]
                 
-                // Convert from center format to corner format
-                val x1 = centerX - width / 2
-                val y1 = centerY - height / 2
-                val x2 = centerX + width / 2
-                val y2 = centerY + height / 2
-                
-                // Scale coordinates to original image size
-                val left = (x1 * originalWidth / TARGET_WIDTH).toInt()
-                val top = (y1 * originalHeight / TARGET_HEIGHT).toInt()
-                val right = (x2 * originalWidth / TARGET_WIDTH).toInt()
-                val bottom = (y2 * originalHeight / TARGET_HEIGHT).toInt()
+                // Convert normalized coordinates to pixel coordinates
+                val left = (x1Norm * originalWidth).toInt()
+                val top = (y1Norm * originalHeight).toInt()
+                val right = (x2Norm * originalWidth).toInt()
+                val bottom = (y2Norm * originalHeight).toInt()
                 
                 // Clamp coordinates to image bounds
                 val clampedLeft = max(0, left)
                 val clampedTop = max(0, top)
                 val clampedRight = min(originalWidth, right)
                 val clampedBottom = min(originalHeight, bottom)
+                
+                // Add debug logging
+                Log.d(TAG, "Detection $i: confidence=$confidence, " +
+                      "normalized=($x1Norm, $y1Norm, $x2Norm, $y2Norm), " +
+                      "pixel=($clampedLeft, $clampedTop, $clampedRight, $clampedBottom)")
                 
                 detections.add(FaceData(clampedLeft, clampedTop, clampedRight, clampedBottom, confidence))
             }
