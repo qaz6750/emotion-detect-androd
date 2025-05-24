@@ -57,8 +57,9 @@ import kotlinx.coroutines.withContext
 fun ImageFaceDetection() {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
-    var imageUri by remember { mutableStateOf<Uri?>(null) }
+    var imageUri by remember { mutableStateOf<Uri?>(null) }    
     var detectedFaces by remember { mutableStateOf<List<FaceData>>(emptyList()) }
+    var faceEmotions by remember { mutableStateOf<Map<Int, EmotionData>>(emptyMap()) }
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
     var imageWidth by remember { mutableFloatStateOf(0f) }
     var imageHeight by remember { mutableFloatStateOf(0f) }
@@ -68,12 +69,17 @@ fun ImageFaceDetection() {
     // ONNX Face Detector instance
     val faceDetector = remember { OnnxFaceDetector(context) }
     
-    // Initialize detector
+    // ONNX Emotion Detector instance
+    val emotionDetector = remember { OnnxEmotionDetector(context) }
+      // Initialize detectors
     LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
-            if (!faceDetector.initialize()) {
+            val faceInitialized = faceDetector.initialize()
+            val emotionInitialized = emotionDetector.initialize()
+            
+            if (!faceInitialized || !emotionInitialized) {
                 withContext(Dispatchers.Main) {
-                    errorMessage = "Failed to initialize face detector"
+                    errorMessage = "Failed to initialize detectors (Face: $faceInitialized, Emotion: $emotionInitialized)"
                 }
             }
         }
@@ -83,6 +89,7 @@ fun ImageFaceDetection() {
     DisposableEffect(Unit) {
         onDispose {
             faceDetector.cleanup()
+            emotionDetector.cleanup()
         }
     }
     
@@ -106,17 +113,27 @@ fun ImageFaceDetection() {
                 imageHeight = bmp.height.toFloat()
                 isProcessing = true
                 errorMessage = null
-                
-                coroutineScope.launch {
+                  coroutineScope.launch {
                     try {
                         val faces = withContext(Dispatchers.IO) {
                             detectFacesWithOnnx(faceDetector, bmp)
                         }
                         detectedFaces = faces
+                        
+                        // Detect emotions for each face
+                        if (faces.isNotEmpty()) {
+                            val emotions = withContext(Dispatchers.IO) {
+                                detectEmotionsForFaces(emotionDetector, bmp, faces)
+                            }
+                            faceEmotions = emotions
+                        } else {
+                            faceEmotions = emptyMap()
+                        }
                     } catch (e: Exception) {
-                        Log.e("ImageDetection", "Error detecting faces: ${e.message}", e)
-                        errorMessage = "Error detecting faces: ${e.message}"
+                        Log.e("ImageDetection", "Error detecting faces/emotions: ${e.message}", e)
+                        errorMessage = "Error detecting faces/emotions: ${e.message}"
                         detectedFaces = emptyList()
+                        faceEmotions = emptyMap()
                     } finally {
                         isProcessing = false
                     }
@@ -179,14 +196,13 @@ fun ImageFaceDetection() {
                         Log.d("ImageDetection", "Canvas size: ${size.width}x${size.height}, " +
                               "Image size: ${imageWidth}x${imageHeight}, " +
                               "Scale: ${scaleX}x${scaleY}")
-                        
-                        detectedFaces.forEach { face ->
+                          detectedFaces.forEachIndexed { index, face ->
                             val scaledLeft = face.left * scaleX
                             val scaledTop = face.top * scaleY
                             val scaledRight = face.right * scaleX
                             val scaledBottom = face.bottom * scaleY
                             
-                            Log.d("ImageDetection", "Face: original=(${face.left}, ${face.top}, ${face.right}, ${face.bottom}), " +
+                            Log.d("ImageDetection", "Face $index: original=(${face.left}, ${face.top}, ${face.right}, ${face.bottom}), " +
                                   "scaled=(${scaledLeft}, ${scaledTop}, ${scaledRight}, ${scaledBottom})")
                             
                             drawRect(
@@ -195,10 +211,17 @@ fun ImageFaceDetection() {
                                 size = androidx.compose.ui.geometry.Size(scaledRight - scaledLeft, scaledBottom - scaledTop),
                                 style = Stroke(width = 3f)
                             )
-                              // Draw confidence text
+                              // Draw confidence and emotion text
                             val confidenceText = "%.1f%%".format(face.confidence * 100)
+                            val emotion = faceEmotions[index]
+                            val emotionText = emotion?.let { 
+                                "${it.emotion} (%.1f%%)".format(it.confidence * 100) 
+                            } ?: "Analyzing..."
+                            
+                            val displayText = "$confidenceText | $emotionText"
+                            
                             drawText(
-                                text = confidenceText,
+                                text = displayText,
                                 x = scaledLeft + 5f,
                                 y = scaledTop - 5f,
                                 color = Color(0xFF00FF00) // Green color
@@ -211,12 +234,23 @@ fun ImageFaceDetection() {
             }
         }        
         Spacer(modifier = Modifier.height(16.dp))
-        
-        Text(
+          Text(
             text = "检测到 ${detectedFaces.size} 张人脸",
             fontSize = 18.sp,
             color = MaterialTheme.colorScheme.secondary
         )
+        
+        // Display emotion details
+        if (faceEmotions.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            faceEmotions.forEach { (index, emotion) ->
+                Text(
+                    text = "人脸 ${index + 1}: ${emotion.emotion} (${(emotion.confidence * 100).toInt()}%)",
+                    fontSize = 14.sp,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+        }
     }
 }
 
@@ -237,4 +271,46 @@ fun detectFacesWithOnnx(faceDetector: OnnxFaceDetector, bitmap: Bitmap): List<Fa
         Log.e("ImageDetection", "ONNX Face Detector not initialized")
         emptyList()
     }
+}
+
+/**
+ * Detect emotions for detected faces
+ */
+fun detectEmotionsForFaces(
+    emotionDetector: OnnxEmotionDetector, 
+    bitmap: Bitmap, 
+    faces: List<FaceData>
+): Map<Int, EmotionData> {
+    if (!emotionDetector.isInitialized()) {
+        Log.e("ImageDetection", "ONNX Emotion Detector not initialized")
+        return emptyMap()
+    }
+    
+    val emotions = mutableMapOf<Int, EmotionData>()
+    
+    faces.forEachIndexed { index, face ->
+        try {
+            // Convert FaceData to Rect for emotion detection
+            val faceRect = android.graphics.Rect(
+                face.left.toInt(),
+                face.top.toInt(), 
+                face.right.toInt(),
+                face.bottom.toInt()
+            )
+            
+            Log.d("ImageDetection", "Detecting emotion for face $index at $faceRect")
+            
+            val emotion = emotionDetector.detectEmotionFromFaceRegion(bitmap, faceRect)
+            if (emotion != null) {
+                emotions[index] = emotion
+                Log.d("ImageDetection", "Face $index emotion: ${emotion.emotion} (${(emotion.confidence * 100).toInt()}%)")
+            } else {
+                Log.w("ImageDetection", "Failed to detect emotion for face $index")
+            }
+        } catch (e: Exception) {
+            Log.e("ImageDetection", "Error detecting emotion for face $index", e)
+        }
+    }
+    
+    return emotions
 }
