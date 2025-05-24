@@ -50,8 +50,20 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // ML Kit Face Detection API
+    // ML Kit Face Detection API (将保留但不使用)
     implementation("com.google.mlkit:face-detection:16.1.5")
+    
+    // ONNX Runtime依赖
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.15.1")
+    
+    // OpenCV for Android (可选，如果需要图像处理)
+    // implementation("org.opencv:opencv-android:4.5.5")
+
+		
+    // Kotlin coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+
 
     // Image loading and manipulation
     implementation("io.coil-kt:coil-compose:2.6.0")

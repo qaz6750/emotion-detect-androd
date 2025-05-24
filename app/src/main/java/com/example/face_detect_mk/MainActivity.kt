@@ -68,10 +68,9 @@ fun FaceDetectionApp(modifier: Modifier = Modifier) {
                 text = { Text("实时检测") }
             )
         }
-        
-        when (selectedTabIndex) {
+          when (selectedTabIndex) {
             0 -> ImageFaceDetection()
-            1 -> CameraFaceDetection()
+            1 -> DisabledCameraView()
         }
     }
 }

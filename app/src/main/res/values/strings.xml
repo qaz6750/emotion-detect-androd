@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">人脸检测</string>
+    <string name="app_name">emotion detect</string>
     <string name="select_image">选择图片</string>
     <string name="no_image_selected">请选择一张图片</string>
     <string name="faces_detected">检测到 %1$d 张人脸</string>
