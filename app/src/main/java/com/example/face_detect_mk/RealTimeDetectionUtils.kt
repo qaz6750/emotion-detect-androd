@@ -209,4 +209,26 @@ object RealTimeDetectionUtils {
             Log.w(TAG, "Error recycling bitmap: ${e.message}")
         }
     }
+
+    /**
+     * 性能监控工具 - 测量处理时间
+     */
+    fun measureProcessingTime(operation: String, block: () -> Unit): Long {
+        val startTime = System.currentTimeMillis()
+        block()
+        val endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+        Log.d(TAG, "$operation took ${duration}ms")
+        return duration
+    }    /**
+     * 帧跳跃优化设置
+     */
+    object FrameSkipConfig {
+        const val SKIP_RATIO = 3 // 每3帧处理1帧
+        const val MAX_PROCESSING_TIME_MS = 100 // 最大处理时间阈值
+        
+        fun shouldProcessFrame(frameCount: Int, isProcessing: Boolean): Boolean {
+            return frameCount % SKIP_RATIO == 0 && !isProcessing
+        }
+    }
 }

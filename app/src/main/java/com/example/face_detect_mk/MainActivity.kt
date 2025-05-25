@@ -50,7 +50,7 @@ fun FaceDetectionApp(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize()
     ) {
         Text(
-            text = "人脸检测", 
+            text = "Emotion Detection", 
             fontSize = 24.sp,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(16.dp)
@@ -60,12 +60,13 @@ fun FaceDetectionApp(modifier: Modifier = Modifier) {
             Tab(
                 selected = selectedTabIndex == 0,
                 onClick = { selectedTabIndex = 0 },
-                text = { Text("图片检测") }
+                text = { Text("Image") }
             )
             Tab(
                 selected = selectedTabIndex == 1,
                 onClick = { selectedTabIndex = 1 },
-                text = { Text("实时检测") }            )
+                text = { Text("Real-time") }
+            )
         }
         
         when (selectedTabIndex) {

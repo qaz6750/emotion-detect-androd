@@ -69,6 +69,10 @@ fun RealTimeFaceDetection() {
     var detectedFaces by remember { mutableStateOf<List<FaceData>>(emptyList()) }
     // 人脸检测状态
     var faceCount by remember { mutableStateOf(0) }
+    // 帧计数器用于跳帧优化
+    var frameCounter by remember { mutableStateOf(0) }
+    // 正在处理标志，避免重复处理
+    var isProcessing by remember { mutableStateOf(false) }
     // 记录PreviewView的实际显示尺寸
     var previewViewWidth by remember { mutableFloatStateOf(0f) }
     var previewViewHeight by remember { mutableFloatStateOf(0f) }
@@ -137,18 +141,29 @@ fun RealTimeFaceDetection() {
                     .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                     .build()
                 imageAnalysis.setAnalyzer(cameraExecutor) { imageProxy ->
-                    analyzeImageWithOnnx(
-                        imageProxy = imageProxy,
-                        faceDetector = faceDetector,
-                        coroutineScope = coroutineScope,
-                        onFacesDetected = { faces ->
-                            detectedFaces = faces
-                            faceCount = faces.size
-                            // 记录相机图像的原始尺寸
-                            cameraImageWidth = imageProxy.width.toFloat()
-                            cameraImageHeight = imageProxy.height.toFloat()
-                        }
-                    )
+                    // 帧跳跃优化：每三帧处理一次
+                    frameCounter++
+                    
+                    if (frameCounter % 3 == 0 && !isProcessing) {
+                        // 每3帧且没有正在处理的任务时才进行检测
+                        isProcessing = true
+                        analyzeImageWithOnnx(
+                            imageProxy = imageProxy,
+                            faceDetector = faceDetector,
+                            coroutineScope = coroutineScope,
+                            onFacesDetected = { faces ->
+                                detectedFaces = faces
+                                faceCount = faces.size
+                                // 记录相机图像的原始尺寸
+                                cameraImageWidth = imageProxy.width.toFloat()
+                                cameraImageHeight = imageProxy.height.toFloat()
+                                isProcessing = false
+                            }
+                        )
+                    } else {
+                        // 跳过该帧，使用上一帧的检测结果
+                        imageProxy.close()
+                    }
                 }
 
                 // 解绑之前绑定的用例
@@ -345,11 +360,16 @@ fun RealTimeFaceDetection() {
             }
 
             Spacer(modifier = Modifier.height(16.dp))
-
             Text(
-                text = "检测到 $faceCount 张人脸",
+                text = "face counter: $faceCount",
                 fontSize = 18.sp,
                 color = MaterialTheme.colorScheme.secondary
+            )
+            
+            Text(
+                text = "frame counter: $frameCounter",
+                fontSize = 14.sp,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
         }
     }
