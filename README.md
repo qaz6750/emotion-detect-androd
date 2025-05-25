@@ -2,6 +2,9 @@
 
 A real-time face detection and emotion recognition Android application powered by ONNX models, built with Jetpack Compose and CameraX.
 
+## 🛠️ Available in Google Drive!
+- [Download APK](https://drive.google.com/file/d/1rRkA6uFm4zRAMgQN94KcrO517IkqQKrB/view?usp=drive_link)
+
 ## 📱 App Features
 
 ### Core Functionality
