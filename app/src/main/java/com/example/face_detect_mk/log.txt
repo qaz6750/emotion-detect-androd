@@ -1,74 +1,18 @@
-025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=186, top=160, right=611, bottom=503
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(160, 669.0, 503, 1094.0)
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(217.0, 669.0, 560.0, 1094.0)
-2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(284.73206, 899.49146, 745.90625, 1470.9172)
-2025-05-25 09:38:00.118 24072-17402 SkJpegCodec             com.example.face_detect_mk           I  [mId: 202] skia-debug SkJpegCodec::onGetPixels ends with rowsDecodec = 720
-2025-05-25 09:38:00.118 24072-17402 SkJpegCodec             com.example.face_detect_mk           I  [mId: 202] skia-debug onGetGainmapInfo returns false
-2025-05-25 09:38:00.118 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Processing bitmap: 1280x720
-2025-05-25 09:38:00.118 24072-17402 OnnxFaceDetector        com.example.face_detect_mk           D  Starting face detection on bitmap 1280x720
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetector        com.example.face_detect_mk           D  Model outputs - Scores: 8840, Boxes: 17680
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4265: confidence=0.97331727, normalized=(0.1310912, 0.18297365, 0.4780409, 0.72293234), pixel=(167, 131, 611, 520)
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4267: confidence=0.761102, normalized=(0.13581675, 0.19516551, 0.48655325, 0.7407672), pixel=(173, 140, 622, 533)
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4285: confidence=0.8614356, normalized=(0.113499284, 0.16173494, 0.47917122, 0.7363745), pixel=(145, 116, 613, 530)
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4378: confidence=0.9922964, normalized=(0.13329758, 0.21806817, 0.46286428, 0.7089454), pixel=(170, 157, 592, 510)
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4393: confidence=0.86371887, normalized=(0.12124902, 0.22268379, 0.46903002, 0.7362953), pixel=(155, 160, 600, 530)
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Found 5 faces before NMS
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=186, top=160, right=611, bottom=503
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(160, 669.0, 503, 1094.0)
-2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(217.0, 669.0, 560.0, 1094.0)
-2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Kept 1 faces after NMS
-2025-05-25 09:38:00.147 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(284.73206, 899.49146, 745.90625, 1470.9172)
-2025-05-25 09:38:00.147 24072-17402 OnnxFaceDetector        com.example.face_detect_mk           D  Face detection completed, found 1 faces
-2025-05-25 09:38:00.147 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Detected 1 faces
-2025-05-25 09:38:00.147 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Detecting emotion for face 0 at Rect(170, 157 - 592, 510)
-2025-05-25 09:38:00.147 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  Cropping face region: (86, 87, 676, 580) from 1280x720
-2025-05-25 09:38:00.147 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Cropped face region: 590x493
-2025-05-25 09:38:00.147 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Detecting emotion from face bitmap: 590x493
-2025-05-25 09:38:00.149 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  Preprocessed emotion image to 48x48 grayscale
-2025-05-25 09:38:00.150 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Created emotion input tensor: [1, 1, 48, 48]
-2025-05-25 09:38:00.156 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Emotion model output shape: [1, 7]
-2025-05-25 09:38:00.156 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Raw emotion scores: -0.598, -10.520, 0.109, -1.716, 1.779, -1.430, 1.040
-2025-05-25 09:38:00.156 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  Emotion detection result: Sad (54%)
-2025-05-25 09:38:00.156 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  All emotion scores: 0.05, 0.00, 0.10, 0.02, 0.55, 0.02, 0.26
-2025-05-25 09:38:00.157 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Face 0 emotion: Sad (54%)
-2025-05-25 09:38:00.165 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=170, top=157, right=592, bottom=510
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(157, 688.0, 510, 1110.0)
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(210.0, 688.0, 563.0, 1110.0)
-2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(275.3203, 925.03754, 749.9399, 1492.4297)
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=170, top=157, right=592, bottom=510
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(157, 688.0, 510, 1110.0)
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(210.0, 688.0, 563.0, 1110.0)
-2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(275.3203, 925.03754, 749.9399, 1492.4297)
-2025-05-25 09:38:00.203 24072-17402 HWUI                    com.example.face_detect_mk           D  onFlyCompress
+2025-05-25 11:23:54.741  7240-5664  .face_detect_mk         com.example.face_detect_mk           I  This is sticky GC, maxfree is 33554432 minfree is 8388608
+2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::+SkJpegCodec
+2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::ReadHeader: width = 1728, height = 1728, color = 10
+2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::ReadHeader: progressive_mode = 0, streamType: SkMemoryStream
+2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::onGetPixels: dstRowBytes = 6912, 
+                                                                                                    dstInfo: SkImageInfo: {IsRGB = 1, ColorType = 4, AlphaType = 1, Dimensions.width = 1728, Dimensions.height = 1728};
+2025-05-25 11:23:54.786  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::onGetPixels ends with rowsDecodec = 1728
+2025-05-25 11:23:54.786  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug onGetGainmapInfo returns false
+2025-05-25 11:23:54.787  7240-5896  OnnxFaceDetector        com.example.face_detect_mk           D  Starting face detection on bitmap 1728x1728
+2025-05-25 11:23:54.807  7240-5896  OnnxFaceDetector        com.example.face_detect_mk           D  Model outputs - Scores: 8840, Boxes: 17680
+2025-05-25 11:23:54.807  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 3864: confidence=0.7944534, normalized=(0.5406287, 0.37604415, 0.711244, 0.51682305), pixel=(934, 649, 1229, 893)
+2025-05-25 11:23:54.807  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 3865: confidence=0.9417496, normalized=(0.53902876, 0.37644058, 0.71599555, 0.52032906), pixel=(931, 650, 1237, 899)
+2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 3905: confidence=0.7867569, normalized=(0.54007983, 0.37693986, 0.7105186, 0.52493155), pixel=(933, 651, 1227, 907)
+2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Found 3 faces before NMS
+2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Kept 1 faces after NMS
+2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetector        com.example.face_detect_mk           D  Face detection completed, found 1 faces
+2025-05-25 11:23:54.808  7240-5896  RealTimeBackDetection   com.example.face_detect_mk           D  检测到 1 张人脸
+2025-05-25 11:23:54.836  7240-5902  HWUI                    com.example.face_detect_mk           D  onFlyCompress

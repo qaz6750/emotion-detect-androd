@@ -433,11 +433,9 @@ private fun analyzeImageWithOnnx(
             val detectedFaces = faceDetector.detectFaces(bitmap)
             val faceCount = detectedFaces.size
 
-            Log.d("RealTimeDetection", "Detected $faceCount faces")
-
-            // 检测每个人脸的情绪
+            Log.d("RealTimeDetection", "Detected $faceCount faces")            // 检测每个人脸的情绪（使用修复版本）
             val faceEmotions = if (detectedFaces.isNotEmpty()) {
-                detectEmotionsForFacesRealTime(emotionDetector, bitmap, detectedFaces)
+                detectEmotionsForFacesRealTimeFixed(emotionDetector, bitmap, detectedFaces)
             } else {
                 emptyMap()
             }
@@ -501,4 +499,100 @@ fun detectEmotionsForFacesRealTime(
     }
     
     return emotions
+}
+
+/**
+ * 为检测到的人脸批量检测情绪（修复版本）
+ * 修复了图像方向问题，确保情绪检测使用正确朝向的人脸图像
+ */
+fun detectEmotionsForFacesRealTimeFixed(
+    emotionDetector: OnnxEmotionDetector, 
+    bitmap: Bitmap, 
+    faces: List<FaceData>
+): Map<Int, EmotionData> {
+    if (!emotionDetector.isInitialized()) {
+        Log.e("RealTimeDetection", "ONNX Emotion Detector not initialized")
+        return emptyMap()
+    }
+    
+    val emotions = mutableMapOf<Int, EmotionData>()
+    
+    // 首先判断是否需要旋转图像
+    val needsRotation = bitmap.width > bitmap.height // 横向图像需要旋转
+    
+    val processedBitmap = if (needsRotation) {
+        // 旋转图像使其变为竖向，这样人脸就是正立的
+        val matrix = android.graphics.Matrix()
+        matrix.postRotate(90f)
+        try {
+            Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        } catch (e: Exception) {
+            Log.e("RealTimeDetection", "Failed to rotate bitmap for emotion detection", e)
+            bitmap // 如果旋转失败，使用原图
+        }
+    } else {
+        bitmap
+    }
+    
+    Log.d("RealTimeDetection", "Original bitmap: ${bitmap.width}x${bitmap.height}, " +
+            "Processed bitmap: ${processedBitmap.width}x${processedBitmap.height}, " +
+            "Needs rotation: $needsRotation")
+    
+    faces.forEachIndexed { index, face ->
+        try {
+            // 根据是否旋转调整人脸坐标
+            val adjustedFaceRect = if (needsRotation) {
+                // 将坐标从原始横向图像转换到旋转后的竖向图像
+                // 旋转90度：(x,y) -> (y, width-x)
+                android.graphics.Rect(
+                    face.top,                    // 新的left = 原来的top
+                    bitmap.width - face.right,   // 新的top = 原来的width - right
+                    face.bottom,                 // 新的right = 原来的bottom  
+                    bitmap.width - face.left     // 新的bottom = 原来的width - left
+                )
+            } else {
+                android.graphics.Rect(face.left, face.top, face.right, face.bottom)
+            }
+            
+            Log.d("RealTimeDetection", "Face $index: Original rect=${face.left},${face.top},${face.right},${face.bottom}, " +
+                    "Adjusted rect=${adjustedFaceRect.left},${adjustedFaceRect.top},${adjustedFaceRect.right},${adjustedFaceRect.bottom}")
+              val emotion = emotionDetector.detectEmotionFromFaceRegion(processedBitmap, adjustedFaceRect)
+            if (emotion != null) {
+                emotions[index] = emotion
+                Log.d("RealTimeDetection", "Face $index emotion: ${emotion.emotion} (${(emotion.confidence * 100).toInt()}%)")
+                
+                // 添加详细的情绪分析日志
+                logEmotionDetails(emotion)
+            } else {
+                Log.w("RealTimeDetection", "Failed to detect emotion for face $index")
+            }
+        } catch (e: Exception) {
+            Log.e("RealTimeDetection", "Error detecting emotion for face $index", e)
+        }
+    }
+    
+    // 如果创建了新的旋转图像，需要释放内存
+    if (processedBitmap != bitmap) {
+        processedBitmap.recycle()
+    }
+    
+    return emotions
+}
+
+/**
+ * 调试版本：显示所有情绪类别的概率分布
+ */
+fun logEmotionDetails(emotionData: EmotionData) {
+    val emotionLabels = arrayOf("Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral")
+    
+    Log.d("RealTimeDetection", "=== 情绪检测详细结果 ===")
+    Log.d("RealTimeDetection", "预测情绪: ${emotionData.emotion} (${(emotionData.confidence * 100).toInt()}%)")
+    Log.d("RealTimeDetection", "所有情绪概率分布:")
+    
+    emotionData.allScores.forEachIndexed { index, score ->
+        if (index < emotionLabels.size) {
+            Log.d("RealTimeDetection", "  ${emotionLabels[index]}: ${(score * 100).toInt()}%")
+        }
+    }
+    Log.d("RealTimeDetection", "========================")
 }
