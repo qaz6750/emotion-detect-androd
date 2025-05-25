@@ -65,12 +65,12 @@ fun FaceDetectionApp(modifier: Modifier = Modifier) {
             Tab(
                 selected = selectedTabIndex == 1,
                 onClick = { selectedTabIndex = 1 },
-                text = { Text("实时检测") }
-            )
+                text = { Text("实时检测") }            )
         }
-          when (selectedTabIndex) {
+        
+        when (selectedTabIndex) {
             0 -> ImageFaceDetection()
-            1 -> DisabledCameraView()
+            1 -> RealTimeFaceDetection()
         }
     }
 }
