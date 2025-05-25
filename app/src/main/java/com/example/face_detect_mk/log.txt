@@ -1,18 +1,52 @@
-2025-05-25 11:23:54.741  7240-5664  .face_detect_mk         com.example.face_detect_mk           I  This is sticky GC, maxfree is 33554432 minfree is 8388608
-2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::+SkJpegCodec
-2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::ReadHeader: width = 1728, height = 1728, color = 10
-2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::ReadHeader: progressive_mode = 0, streamType: SkMemoryStream
-2025-05-25 11:23:54.755  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::onGetPixels: dstRowBytes = 6912, 
-                                                                                                    dstInfo: SkImageInfo: {IsRGB = 1, ColorType = 4, AlphaType = 1, Dimensions.width = 1728, Dimensions.height = 1728};
-2025-05-25 11:23:54.786  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug SkJpegCodec::onGetPixels ends with rowsDecodec = 1728
-2025-05-25 11:23:54.786  7240-5896  SkJpegCodec             com.example.face_detect_mk           I  [mId: 106] skia-debug onGetGainmapInfo returns false
-2025-05-25 11:23:54.787  7240-5896  OnnxFaceDetector        com.example.face_detect_mk           D  Starting face detection on bitmap 1728x1728
-2025-05-25 11:23:54.807  7240-5896  OnnxFaceDetector        com.example.face_detect_mk           D  Model outputs - Scores: 8840, Boxes: 17680
-2025-05-25 11:23:54.807  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 3864: confidence=0.7944534, normalized=(0.5406287, 0.37604415, 0.711244, 0.51682305), pixel=(934, 649, 1229, 893)
-2025-05-25 11:23:54.807  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 3865: confidence=0.9417496, normalized=(0.53902876, 0.37644058, 0.71599555, 0.52032906), pixel=(931, 650, 1237, 899)
-2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 3905: confidence=0.7867569, normalized=(0.54007983, 0.37693986, 0.7105186, 0.52493155), pixel=(933, 651, 1227, 907)
-2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Found 3 faces before NMS
-2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Kept 1 faces after NMS
-2025-05-25 11:23:54.808  7240-5896  OnnxFaceDetector        com.example.face_detect_mk           D  Face detection completed, found 1 faces
-2025-05-25 11:23:54.808  7240-5896  RealTimeBackDetection   com.example.face_detect_mk           D  检测到 1 张人脸
-2025-05-25 11:23:54.836  7240-5902  HWUI                    com.example.face_detect_mk           D  onFlyCompress
+[mId: 780] skia-debug SkJpegCodec::onGetPixels ends with rowsDecodec = 1728
+2025-05-25 12:00:33.592 15098-25870 SkJpegCodec             com.example.face_detect_mk           I  [mId: 780] skia-debug onGetGainmapInfo returns false
+2025-05-25 12:00:33.592 15098-25870 OnnxFaceDetector        com.example.face_detect_mk           D  Starting face detection on bitmap 1728x1728
+2025-05-25 12:00:33.614 15098-25870 OnnxFaceDetector        com.example.face_detect_mk           D  Model outputs - Scores: 8840, Boxes: 17680
+2025-05-25 12:00:33.614 15098-25870 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 3941: confidence=0.7729885, normalized=(0.40747917, 0.47316512, 0.64806104, 0.6335567), pixel=(704, 817, 1119, 1094)
+2025-05-25 12:00:33.614 15098-25870 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Found 1 faces before NMS
+2025-05-25 12:00:33.614 15098-25870 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Kept 1 faces after NMS
+2025-05-25 12:00:33.614 15098-25870 OnnxFaceDetector        com.example.face_detect_mk           D  Face detection completed, found 1 faces
+2025-05-25 12:00:33.614 15098-25870 RealTimeBackDetection   com.example.face_detect_mk           D  检测到 1 张人脸
+2025-05-25 12:00:33.614 15098-25870 RealTimeBackDetection   com.example.face_detect_mk           D  对人脸 0 进行情绪识别: Rect(704, 817 - 1119, 1094)
+2025-05-25 12:00:33.614 15098-25870 OnnxEmotionUtils        com.example.face_detect_mk           D  Cropping face region: (621, 762, 1202, 1149) from 1728x1728
+2025-05-25 12:00:33.615 15098-25870 OnnxEmotionDetector     com.example.face_detect_mk           D  Cropped face region: 581x387
+2025-05-25 12:00:33.615 15098-25870 OnnxEmotionDetector     com.example.face_detect_mk           D  Detecting emotion from face bitmap: 581x387
+2025-05-25 12:00:33.617 15098-25870 OnnxEmotionUtils        com.example.face_detect_mk           D  Preprocessed emotion image to 48x48 grayscale
+2025-05-25 12:00:33.618 15098-25870 OnnxEmotionDetector     com.example.face_detect_mk           D  Created emotion input tensor: [1, 1, 48, 48]
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  坐标转换参数:
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    相机图像: 1728.0x1728.0
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    PreviewView: 1080.0x2400.0
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    Canvas: 1080.0x2400.0
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  原始人脸 0: (637, 822, 1116, 1114)
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  旋转后人脸 0: (614, 637, 906, 1116)
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  调整后相机尺寸: 1728.0x1728.0
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    实际显示区域: 1080.0x1080.0, 偏移: (0.0, 660.0)
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    PreviewView坐标: (383.75, 1058.125, 566.25, 1357.5)
+2025-05-25 12:00:33.621 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    最终Canvas坐标: (383.75, 1058.125, 566.25, 1357.5)
+2025-05-25 12:00:33.630 15098-25870 OnnxEmotionDetector     com.example.face_detect_mk           D  Emotion model output shape: [1, 7]
+2025-05-25 12:00:33.631 15098-25870 OnnxEmotionDetector     com.example.face_detect_mk           D  Raw emotion scores: 0.953, -7.489, 1.369, -2.042, -0.026, -0.375, -0.747
+2025-05-25 12:00:33.631 15098-25870 OnnxEmotionUtils        com.example.face_detect_mk           D  Emotion detection result: Fear (44%)
+2025-05-25 12:00:33.631 15098-25870 OnnxEmotionUtils        com.example.face_detect_mk           D  All emotion scores: 0.30, 0.00, 0.45, 0.01, 0.11, 0.08, 0.05
+2025-05-25 12:00:33.631 15098-25870 RealTimeBackDetection   com.example.face_detect_mk           D  人脸 0 情绪: Fear (44%)
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  坐标转换参数:
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    相机图像: 1728.0x1728.0
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    PreviewView: 1080.0x2400.0
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    Canvas: 1080.0x2400.0
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  原始人脸 0: (704, 817, 1119, 1094)
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  旋转后人脸 0: (634, 704, 911, 1119)
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  调整后相机尺寸: 1728.0x1728.0
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    实际显示区域: 1080.0x1080.0, 偏移: (0.0, 660.0)
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    PreviewView坐标: (396.25, 1100.0, 569.375, 1359.375)
+2025-05-25 12:00:33.641 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    最终Canvas坐标: (396.25, 1100.0, 569.375, 1359.375)
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  坐标转换参数:
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    相机图像: 1728.0x1728.0
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    PreviewView: 1080.0x2400.0
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    Canvas: 1080.0x2400.0
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  原始人脸 0: (704, 817, 1119, 1094)
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  旋转后人脸 0: (634, 704, 911, 1119)
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D  调整后相机尺寸: 1728.0x1728.0
+2025-05-25 12:00:33.653 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    实际显示区域: 1080.0x1080.0, 偏移: (0.0, 660.0)
+2025-05-25 12:00:33.654 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    PreviewView坐标: (396.25, 1100.0, 569.375, 1359.375)
+2025-05-25 12:00:33.654 15098-15098 RealTimeBa...ctionUtils com.example.face_detect_mk           D    最终Canvas坐标: (396.25, 1100.0, 569.375, 1359.375)
+2025-05-25 12:00:33.657 15098-25870 HWUI                    com.example.face_detect_mk           D  onFlyCompress
+2025-05-25 12:00:33.686 15098-25870 SkJpegCodec             com.example.face_detect_mk           I  [mId: 781] skia-debug SkJpegCodec::+SkJpegCodec

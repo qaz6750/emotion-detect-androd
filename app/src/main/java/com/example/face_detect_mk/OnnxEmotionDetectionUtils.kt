@@ -202,6 +202,15 @@ object OnnxEmotionDetectionUtils {
             
             val predictedEmotion = EMOTION_LABELS[maxIndex]
             
+            // 详细的情绪概率调试信息
+            Log.d(TAG, "=== 情绪检测详细结果 ===")
+            for (i in EMOTION_LABELS.indices) {
+                val percentage = (probabilities[i] * 100).toInt()
+                val marker = if (i == maxIndex) " ← 选中" else ""
+                Log.d(TAG, "${EMOTION_LABELS[i]}: ${percentage}%$marker")
+            }
+            Log.d(TAG, "========================")
+            
             Log.d(TAG, "Emotion detection result: $predictedEmotion (${(maxConfidence * 100).toInt()}%)")
             Log.d(TAG, "All emotion scores: ${probabilities.joinToString { "%.2f".format(it) }}")
             
