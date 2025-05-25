@@ -1,157 +1,74 @@
-2025-05-20 19:47:40.337 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  ONNX人脸检测模型初始化成功
-2025-05-20 19:47:40.337 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  开始人脸检测处理，输入图像大小: 3472x4624
-2025-05-20 19:47:40.340 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  调整图像大小为: 320x240
-2025-05-20 19:47:40.371 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  图像预处理完成，生成的FloatBuffer大小: 230400
-2025-05-20 19:47:40.371 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  图像预处理完成，输入大小: 320x240
-2025-05-20 19:47:40.373 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  模型输入名称: input
-2025-05-20 19:47:40.373 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  开始ONNX模型推理
-2025-05-20 19:47:40.382 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  模型推理完成，开始处理输出结果
-2025-05-20 19:47:40.383 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  输出结果数量: 2
-2025-05-20 19:47:40.387 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  输出数据结构: outputData类型=class [[[F, outputData2类型=class [[[F
-2025-05-20 19:47:40.387 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  boxes类型=class [[F, scores类型=class [[F
-2025-05-20 19:47:40.387 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  检测到boxes为2D数组结构
-2025-05-20 19:47:40.387 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  检测到 4420 个候选框
-2025-05-20 19:47:40.387 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  创建confidences数组，大小: 4420
-2025-05-20 19:47:40.389 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  开始处理模型输出, probThreshold=0.7, iouThreshold=0.3
-2025-05-20 19:47:40.389 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  输入数据形状: confidences=1x2x4420, boxes=1x4420
-2025-05-20 19:47:40.389 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  处理类别 1, 4420 个检测结果
-2025-05-20 19:47:40.389 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[84]: [0.9356563, 0.064343706], 大小: 2
-2025-05-20 19:47:40.389 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.389 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #84: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7070075
-2025-05-20 19:47:40.389 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[87]: [0.93498677, 0.06501318], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #87: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7308628
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[88]: [0.94106257, 0.058937497], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #88: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.70965564
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[90]: [0.9355072, 0.06449277], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #90: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7551704
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[91]: [0.94061416, 0.059385773], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #91: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.73578495
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[92]: [0.9374792, 0.06252076], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #92: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.71874356
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[93]: [0.93572867, 0.064271316], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #93: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7823136
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[94]: [0.93965936, 0.060340613], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #94: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7642758
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[95]: [0.9363024, 0.06369754], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #95: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.74797106
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[96]: [0.93883795, 0.061162088], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #96: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.80549717
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[97]: [0.9402805, 0.05971952], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #97: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7881377
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[98]: [0.9365233, 0.063476644], 大小: 2
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #98: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7720607
-2025-05-20 19:47:40.390 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[99]: [0.9420451, 0.05795489], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #99: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.83147705
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[100]: [0.9425419, 0.057458054], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #100: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.8130113
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[101]: [0.9387973, 0.061202724], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #101: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.79494345
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[102]: [0.943678, 0.056321904], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #102: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.85533017
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[103]: [0.9437046, 0.056295447], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #103: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.83435476
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[104]: [0.9399541, 0.060045946], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #104: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.81747526
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[105]: [0.94375616, 0.056243785], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #105: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.87989205
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[106]: [0.94362277, 0.056377262], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #106: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.8597611
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[107]: [0.94069374, 0.05930632], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #107: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.843762
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[108]: [0.94587374, 0.054126225], 大小: 2
-2025-05-20 19:47:40.391 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #108: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.90209365
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[109]: [0.94345844, 0.05654149], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #109: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.8835384
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[110]: [0.94026476, 0.05973518], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #110: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.8681605
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[111]: [0.9491811, 0.05081896], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #111: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.928268
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[112]: [0.9450581, 0.05494187], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #112: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.90884626
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[113]: [0.9432454, 0.05675456], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #113: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.8914409
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[114]: [0.9469061, 0.053093877], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #114: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.9537121
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[115]: [0.94623864, 0.053761404], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #115: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.93566024
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[116]: [0.94418055, 0.055819485], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #116: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.9201799
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[117]: [0.94237834, 0.057621665], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #117: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.9815608
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[118]: [0.9436808, 0.056319147], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #118: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.9616493
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[119]: [0.9408742, 0.059125762], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #119: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.9476537
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[204]: [0.94440675, 0.055593193], 大小: 2
-2025-05-20 19:47:40.392 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #204: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.70791316
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[207]: [0.94225174, 0.05774827], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #207: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.73288083
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[208]: [0.94683206, 0.053168006], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #208: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7102337
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[210]: [0.94435924, 0.055640813], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #210: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.75755733
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[211]: [0.947902, 0.05209791], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #211: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.73340154
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[212]: [0.94675744, 0.053242613], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #212: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7153877
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[213]: [0.9449645, 0.055035472], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #213: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7799783
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[214]: [0.94648236, 0.05351763], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #214: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7597796
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[215]: [0.94637114, 0.053628895], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #215: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.7444693
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[216]: [0.94621354, 0.053786438], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #216: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.80714333
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[217]: [0.9461868, 0.053813264], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #217: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.78383464
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[218]: [0.9459894, 0.054010604], 大小: 2
-2025-05-20 19:47:40.393 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.394 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #218: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.76454914
-2025-05-20 19:47:40.394 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[219]: [0.9498558, 0.050144125], 大小: 2
-2025-05-20 19:47:40.394 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
-2025-05-20 19:47:40.394 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  候选框 #219: coords=(2690.7998, 0.0, 3472.0, 1040.4), 宽=781.2002, 高=1040.4, prob=0.83126825
-2025-05-20 19:47:40.394 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  box数据[220]: [0.9484797, 0.051520213], 大小: 2
-2025-05-20 19:47:40.394 11419-11419 OnnxFaceDetector        com.example.face_detect_mk           D  2值框: 原始值=(3124.7998, 462.4), 转换后=(2690.7998, 0.0, 3472.0, 1040.4)
+025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=186, top=160, right=611, bottom=503
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(160, 669.0, 503, 1094.0)
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(217.0, 669.0, 560.0, 1094.0)
+2025-05-25 09:38:00.114 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(284.73206, 899.49146, 745.90625, 1470.9172)
+2025-05-25 09:38:00.118 24072-17402 SkJpegCodec             com.example.face_detect_mk           I  [mId: 202] skia-debug SkJpegCodec::onGetPixels ends with rowsDecodec = 720
+2025-05-25 09:38:00.118 24072-17402 SkJpegCodec             com.example.face_detect_mk           I  [mId: 202] skia-debug onGetGainmapInfo returns false
+2025-05-25 09:38:00.118 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Processing bitmap: 1280x720
+2025-05-25 09:38:00.118 24072-17402 OnnxFaceDetector        com.example.face_detect_mk           D  Starting face detection on bitmap 1280x720
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetector        com.example.face_detect_mk           D  Model outputs - Scores: 8840, Boxes: 17680
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4265: confidence=0.97331727, normalized=(0.1310912, 0.18297365, 0.4780409, 0.72293234), pixel=(167, 131, 611, 520)
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4267: confidence=0.761102, normalized=(0.13581675, 0.19516551, 0.48655325, 0.7407672), pixel=(173, 140, 622, 533)
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4285: confidence=0.8614356, normalized=(0.113499284, 0.16173494, 0.47917122, 0.7363745), pixel=(145, 116, 613, 530)
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4378: confidence=0.9922964, normalized=(0.13329758, 0.21806817, 0.46286428, 0.7089454), pixel=(170, 157, 592, 510)
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Detection 4393: confidence=0.86371887, normalized=(0.12124902, 0.22268379, 0.46903002, 0.7362953), pixel=(155, 160, 600, 530)
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Found 5 faces before NMS
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=186, top=160, right=611, bottom=503
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(160, 669.0, 503, 1094.0)
+2025-05-25 09:38:00.146 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(217.0, 669.0, 560.0, 1094.0)
+2025-05-25 09:38:00.146 24072-17402 OnnxFaceDetectionUtils  com.example.face_detect_mk           D  Kept 1 faces after NMS
+2025-05-25 09:38:00.147 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(284.73206, 899.49146, 745.90625, 1470.9172)
+2025-05-25 09:38:00.147 24072-17402 OnnxFaceDetector        com.example.face_detect_mk           D  Face detection completed, found 1 faces
+2025-05-25 09:38:00.147 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Detected 1 faces
+2025-05-25 09:38:00.147 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Detecting emotion for face 0 at Rect(170, 157 - 592, 510)
+2025-05-25 09:38:00.147 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  Cropping face region: (86, 87, 676, 580) from 1280x720
+2025-05-25 09:38:00.147 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Cropped face region: 590x493
+2025-05-25 09:38:00.147 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Detecting emotion from face bitmap: 590x493
+2025-05-25 09:38:00.149 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  Preprocessed emotion image to 48x48 grayscale
+2025-05-25 09:38:00.150 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Created emotion input tensor: [1, 1, 48, 48]
+2025-05-25 09:38:00.156 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Emotion model output shape: [1, 7]
+2025-05-25 09:38:00.156 24072-17402 OnnxEmotionDetector     com.example.face_detect_mk           D  Raw emotion scores: -0.598, -10.520, 0.109, -1.716, 1.779, -1.430, 1.040
+2025-05-25 09:38:00.156 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  Emotion detection result: Sad (54%)
+2025-05-25 09:38:00.156 24072-17402 OnnxEmotionUtils        com.example.face_detect_mk           D  All emotion scores: 0.05, 0.00, 0.10, 0.02, 0.55, 0.02, 0.26
+2025-05-25 09:38:00.157 24072-17402 RealTimeDetection       com.example.face_detect_mk           D  Face 0 emotion: Sad (54%)
+2025-05-25 09:38:00.165 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=170, top=157, right=592, bottom=510
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(157, 688.0, 510, 1110.0)
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(210.0, 688.0, 563.0, 1110.0)
+2025-05-25 09:38:00.166 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(275.3203, 925.03754, 749.9399, 1492.4297)
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Canvas size: 954.0x1721.0
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  PreviewView size: 954.0x1721.0
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Camera image size: 1280.0x720.0
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Needs rotation: true
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Effective image size: 720.0x1280.0
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Displayed image size: 968.0625x1721.0
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Display offset: -7.03125x0.0
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Scale factors: scaleX=1.3445313, scaleY=1.3445313
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Original face 0: left=170, top=157, right=592, bottom=510
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: rotated=(157, 688.0, 510, 1110.0)
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: mirrored=(210.0, 688.0, 563.0, 1110.0)
+2025-05-25 09:38:00.183 24072-24072 RealTimeDetection       com.example.face_detect_mk           D  Face 0: final=(275.3203, 925.03754, 749.9399, 1492.4297)
+2025-05-25 09:38:00.203 24072-17402 HWUI                    com.example.face_detect_mk           D  onFlyCompress

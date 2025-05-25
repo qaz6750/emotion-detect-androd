@@ -67,6 +67,8 @@ fun RealTimeFaceDetection() {
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
     val cameraExecutor = remember { Executors.newSingleThreadExecutor() }    // 存储检测到的人脸数据
     var detectedFaces by remember { mutableStateOf<List<FaceData>>(emptyList()) }
+    // 存储人脸情绪数据
+    var faceEmotions by remember { mutableStateOf<Map<Int, EmotionData>>(emptyMap()) }
     // 人脸检测状态
     var faceCount by remember { mutableStateOf(0) }
     // 帧计数器用于跳帧优化
@@ -93,6 +95,9 @@ fun RealTimeFaceDetection() {
 
     // ONNX Face Detector instance
     val faceDetector = remember { OnnxFaceDetector(context) }
+    
+    // ONNX Emotion Detector instance
+    val emotionDetector = remember { OnnxEmotionDetector(context) }
 
     val previewView = remember {
         PreviewView(context).apply {
@@ -109,14 +114,15 @@ fun RealTimeFaceDetection() {
     LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
             val faceInitialized = faceDetector.initialize()
+            val emotionInitialized = emotionDetector.initialize()
             
             withContext(Dispatchers.Main) {
-                if (!faceInitialized) {
+                if (!faceInitialized || !emotionInitialized) {
                     hasError = true
-                    errorMessage = "Failed to initialize ONNX face detector"
+                    errorMessage = "Failed to initialize ONNX detectors"
                 } else {
                     detectorsInitialized = true
-                    Log.d("RealTimeDetection", "ONNX face detector initialized successfully")
+                    Log.d("RealTimeDetection", "ONNX detectors initialized successfully")
                 }
             }
         }
@@ -150,9 +156,11 @@ fun RealTimeFaceDetection() {
                         analyzeImageWithOnnx(
                             imageProxy = imageProxy,
                             faceDetector = faceDetector,
+                            emotionDetector = emotionDetector,
                             coroutineScope = coroutineScope,
-                            onFacesDetected = { faces ->
+                            onFacesDetected = { faces, emotions ->
                                 detectedFaces = faces
+                                faceEmotions = emotions
                                 faceCount = faces.size
                                 // 记录相机图像的原始尺寸
                                 cameraImageWidth = imageProxy.width.toFloat()
@@ -193,6 +201,7 @@ fun RealTimeFaceDetection() {
     DisposableEffect(Unit) {
         onDispose {
             faceDetector.cleanup()
+            emotionDetector.cleanup()
             cameraExecutor.shutdown()
         }
     }
@@ -345,19 +354,24 @@ fun RealTimeFaceDetection() {
                                 size = androidx.compose.ui.geometry.Size(finalRight - finalLeft, finalBottom - finalTop),
                                 style = Stroke(width = 3f)
                             )
-                            
-                            // 绘制置信度文本
+                              // 绘制置信度和情绪文本
                             val confidenceText = "Face ${index + 1}: %.1f%%".format(face.confidence * 100)
+                            val emotion = faceEmotions[index]
+                            val emotionText = emotion?.let { 
+                                "${it.emotion} (%.1f%%)".format(it.confidence * 100) 
+                            } ?: "Analyzing..."
+                            
+                            val displayText = "$confidenceText | $emotionText"
+                            
                             drawText(
-                                text = confidenceText,
+                                text = displayText,
                                 x = finalLeft + 5f,
                                 y = finalTop - 5f,
                                 color = Color(0xFF00FF00)
-                            )
-                        }
+                            )                        }
                     }
                 }
-            }
+            }            
 
             Spacer(modifier = Modifier.height(16.dp))
             Text(
@@ -365,6 +379,18 @@ fun RealTimeFaceDetection() {
                 fontSize = 18.sp,
                 color = MaterialTheme.colorScheme.secondary
             )
+            
+            // 显示情绪详情
+            // if (faceEmotions.isNotEmpty()) {
+            //     Spacer(modifier = Modifier.height(8.dp))
+            //     faceEmotions.forEach { (index, emotion) ->
+            //         Text(
+            //             text = "人脸 ${index + 1}: ${emotion.emotion} (${(emotion.confidence * 100).toInt()}%)",
+            //             fontSize = 14.sp,
+            //             color = MaterialTheme.colorScheme.onSurface
+            //         )
+            //     }
+            // }
             
             Text(
                 text = "frame counter: $frameCounter",
@@ -380,8 +406,9 @@ fun RealTimeFaceDetection() {
 private fun analyzeImageWithOnnx(
     imageProxy: ImageProxy,
     faceDetector: OnnxFaceDetector,
+    emotionDetector: OnnxEmotionDetector,
     coroutineScope: kotlinx.coroutines.CoroutineScope,
-    onFacesDetected: (List<FaceData>) -> Unit
+    onFacesDetected: (List<FaceData>, Map<Int, EmotionData>) -> Unit
 ) {
     val mediaImage = imageProxy.image
     if (mediaImage == null) {
@@ -397,28 +424,33 @@ private fun analyzeImageWithOnnx(
             if (bitmap == null) {
                 Log.e("RealTimeDetection", "Failed to convert ImageProxy to Bitmap")
                 withContext(Dispatchers.Main) {
-                    onFacesDetected(emptyList())
+                    onFacesDetected(emptyList(), emptyMap())
                 }
                 return@launch
             }
 
-            Log.d("RealTimeDetection", "Processing bitmap: ${bitmap.width}x${bitmap.height}")
-
-            // 使用ONNX模型检测人脸
+            Log.d("RealTimeDetection", "Processing bitmap: ${bitmap.width}x${bitmap.height}")            // 使用ONNX模型检测人脸
             val detectedFaces = faceDetector.detectFaces(bitmap)
             val faceCount = detectedFaces.size
 
             Log.d("RealTimeDetection", "Detected $faceCount faces")
 
+            // 检测每个人脸的情绪
+            val faceEmotions = if (detectedFaces.isNotEmpty()) {
+                detectEmotionsForFacesRealTime(emotionDetector, bitmap, detectedFaces)
+            } else {
+                emptyMap()
+            }
+
             // 更新UI
             withContext(Dispatchers.Main) {
-                onFacesDetected(detectedFaces)
+                onFacesDetected(detectedFaces, faceEmotions)
             }
 
         } catch (e: Exception) {
             Log.e("RealTimeDetection", "Error processing image: ${e.message}", e)
             withContext(Dispatchers.Main) {
-                onFacesDetected(emptyList())
+                onFacesDetected(emptyList(), emptyMap())
             }
         } finally {
             imageProxy.close()
@@ -428,3 +460,45 @@ private fun analyzeImageWithOnnx(
 
 // 四元组数据类
 data class Quadruple<A, B, C, D>(val first: A, val second: B, val third: C, val fourth: D)
+
+/**
+ * 为检测到的人脸批量检测情绪
+ */
+fun detectEmotionsForFacesRealTime(
+    emotionDetector: OnnxEmotionDetector, 
+    bitmap: Bitmap, 
+    faces: List<FaceData>
+): Map<Int, EmotionData> {
+    if (!emotionDetector.isInitialized()) {
+        Log.e("RealTimeDetection", "ONNX Emotion Detector not initialized")
+        return emptyMap()
+    }
+    
+    val emotions = mutableMapOf<Int, EmotionData>()
+    
+    faces.forEachIndexed { index, face ->
+        try {
+            // Convert FaceData to Rect for emotion detection
+            val faceRect = android.graphics.Rect(
+                face.left,
+                face.top, 
+                face.right,
+                face.bottom
+            )
+            
+            Log.d("RealTimeDetection", "Detecting emotion for face $index at $faceRect")
+            
+            val emotion = emotionDetector.detectEmotionFromFaceRegion(bitmap, faceRect)
+            if (emotion != null) {
+                emotions[index] = emotion
+                Log.d("RealTimeDetection", "Face $index emotion: ${emotion.emotion} (${(emotion.confidence * 100).toInt()}%)")
+            } else {
+                Log.w("RealTimeDetection", "Failed to detect emotion for face $index")
+            }
+        } catch (e: Exception) {
+            Log.e("RealTimeDetection", "Error detecting emotion for face $index", e)
+        }
+    }
+    
+    return emotions
+}
