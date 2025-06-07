@@ -20,6 +20,8 @@ class OnnxFaceDetector(private val context: Context) {
     
     companion object {
         private const val TAG = "OnnxFaceDetector"
+        // Improve some accuracy
+        // private const val MODEL_FILENAME = "version-RFB-320.onnx"
         private const val MODEL_FILENAME = "version-RFB-320.onnx"
         private const val INPUT_NAME = "input"
         private const val OUTPUT_SCORES_NAME = "scores"

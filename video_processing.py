@@ -177,8 +177,8 @@ def apply_face_results_to_frame(frame, face_results):
     
     return frame
 
-def process_video_with_onnx_improved(video_path, emotion_model, device, output_path=None, sample_step=2, 
-                                   display=True, face_model_path=None, process_all=False, batch_size=4, debug=False):
+def process_video_with_onnx_improved(video_path, emotion_model, device, output_path=None, sample_step=1,
+                                   display=True, face_model_path=None, process_all=False, batch_size=2, debug=False):
     """Improved video processing with batch-then-apply logic
     
     Process frames in batches, then apply results to intermediate frames.
